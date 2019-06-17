@@ -1,5 +1,6 @@
 import React from 'react'
 import image from './cryptomonedas.png'
+import Form from './components/Form'
 
 function App() {
   return (
@@ -7,6 +8,10 @@ function App() {
       <div className='row'>
         <div className='one-half column'>
           <img src={image} alt='Imgágen criptomonedas' />
+        </div>
+        <div className='one-half column'>
+          <h1>Cotiza criptomonedas al instante</h1>
+          <Form />
         </div>
       </div>
     </div>
