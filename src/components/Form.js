@@ -1,5 +1,6 @@
-import React, {useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import CritoCurrency from './CriptoCurrency'
 
 function Form() {
   const [criptocurrency, setCriptocurrency] = useState([])
@@ -9,7 +10,7 @@ function Form() {
       const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=15&tsym=USD`
 
       const result = await axios.get(url)
-      
+
       // Colocar respuesta en el state
       setCriptocurrency(result.data.Data)
     }
@@ -20,7 +21,7 @@ function Form() {
     <form>
       <div className='row'>
         <label>Elige tu moneda</label>
-        <select name='' id='' className="u-full-width">
+        <select name='' id='' className='u-full-width'>
           <option value=''>- Elige tu moneda -</option>
           <option value='COP'>Peso colombiano</option>
           <option value='USD'>Dolar estadounidense</option>
@@ -30,7 +31,11 @@ function Form() {
       </div>
       <div className='row'>
         <label>Elige tu criptomodena</label>
-        <select name="" id="" className='u-full-width'></select>
+        <select name='' id='' className='u-full-width'>
+          {criptocurrency.map(cripto => (
+            <CritoCurrency key={cripto.CoinInfo.Id} cripto={cripto} />
+          ))}
+        </select>
       </div>
     </form>
   )
