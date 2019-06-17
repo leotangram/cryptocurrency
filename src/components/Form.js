@@ -21,8 +21,21 @@ function Form() {
     consultAPI()
   }, [])
 
+  // Validar que el usuario llene ambos campos
+  const quoteCurrency = e => {
+    e.preventDefault()
+    // Validar si ambos campos están llenos
+    if (coinQuote === '' || criptoQuote === '') {
+      setError(true)
+      return
+    }
+
+    // Pasar los datos al componente principal
+    setError(true)
+  }
+
   return (
-    <form>
+    <form onSubmit={quoteCurrency}>
       <div className='row'>
         <label>Elige tu moneda</label>
         <select
@@ -52,6 +65,11 @@ function Form() {
           ))}
         </select>
       </div>
+      <input
+        type='submit'
+        value='Calcular'
+        className='button-primary u-full-width'
+      />
     </form>
   )
 }
