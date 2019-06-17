@@ -4,6 +4,9 @@ import CritoCurrency from './CriptoCurrency'
 
 function Form() {
   const [criptocurrency, setCriptocurrency] = useState([])
+  const [coinQuote, setCoinQuote] = useState('')
+  const [criptoQuote, setCriptoQuote] = useState('')
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     const consultAPI = async () => {
@@ -17,11 +20,17 @@ function Form() {
 
     consultAPI()
   }, [])
+
   return (
     <form>
       <div className='row'>
         <label>Elige tu moneda</label>
-        <select name='' id='' className='u-full-width'>
+        <select
+          name=''
+          id=''
+          className='u-full-width'
+          onChange={e => setCoinQuote(e.target.value)}
+        >
           <option value=''>- Elige tu moneda -</option>
           <option value='COP'>Peso colombiano</option>
           <option value='USD'>Dolar estadounidense</option>
@@ -31,7 +40,13 @@ function Form() {
       </div>
       <div className='row'>
         <label>Elige tu criptomodena</label>
-        <select name='' id='' className='u-full-width'>
+        <select
+          name=''
+          id=''
+          className='u-full-width'
+          onChange={e => setCriptoQuote(e.target.value)}
+        >
+          <option value=''>- Elige tu criptomoneda -</option>
           {criptocurrency.map(cripto => (
             <CritoCurrency key={cripto.CoinInfo.Id} cripto={cripto} />
           ))}
