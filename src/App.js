@@ -3,11 +3,13 @@ import axios from 'axios'
 import image from './cryptomonedas.png'
 import Form from './components/Form'
 import Spinner from './components/Spinner'
+import Quote from './components/Quote'
 
 function App() {
   const [currency, setCurrency] = useState('')
   const [criptoCurrencyApp, setCriptoCurrencyApp] = useState('')
   const [loading, setLoading] = useState(false)
+  const [result, setResult] = useState({})
 
   useEffect(() => {
     const quoteCritoCurrency = async () => {
@@ -19,17 +21,21 @@ function App() {
       console.log(currency)
 
       const result = await axios.get(url)
-      console.log(result)
+      // Mostrar spinner
       setLoading(true)
       setTimeout(() => {
+        // Ocultar spinner
         setLoading(false)
-      }, 3000);
+
+        // Agregar el resultado
+        setResult(result.data.DISPLAY[criptoCurrencyApp][currency])
+      }, 3000)
     }
     quoteCritoCurrency()
   }, [criptoCurrencyApp, currency])
 
   // Mostrar spinner o resultado
-  const component = loading ? <Spinner /> : null
+  const component = loading ? <Spinner /> : <Quote result={result} />
 
   return (
     <div className="container">
