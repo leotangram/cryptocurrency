@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import CritoCurrency from './CriptoCurrency'
+import Error from './Error'
 
 function Form() {
   const [criptocurrency, setCriptocurrency] = useState([])
@@ -31,11 +32,17 @@ function Form() {
     }
 
     // Pasar los datos al componente principal
-    setError(true)
+    setError(false)
   }
+
+  // Mostrar el error en caso de que exista
+  const errorComponent = error ? (
+    <Error message={'Ambos campos son obligatorios'} />
+  ) : null
 
   return (
     <form onSubmit={quoteCurrency}>
+      {errorComponent}
       <div className='row'>
         <label>Elige tu moneda</label>
         <select
