@@ -3,7 +3,7 @@ import axios from 'axios'
 import CritoCurrency from './CriptoCurrency'
 import Error from './Error'
 
-function Form() {
+function Form({ setCurrency, setCriptoCurrencyApp }) {
   const [criptocurrency, setCriptocurrency] = useState([])
   const [coinQuote, setCoinQuote] = useState('')
   const [criptoQuote, setCriptoQuote] = useState('')
@@ -11,7 +11,7 @@ function Form() {
 
   useEffect(() => {
     const consultAPI = async () => {
-      const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=15&tsym=USD`
+      const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD`
 
       const result = await axios.get(url)
 
@@ -33,6 +33,8 @@ function Form() {
 
     // Pasar los datos al componente principal
     setError(false)
+    setCriptoCurrencyApp(criptoQuote)
+    setCurrency(coinQuote)
   }
 
   // Mostrar el error en caso de que exista
@@ -54,6 +56,7 @@ function Form() {
           <option value=''>- Elige tu moneda -</option>
           <option value='COP'>Peso colombiano</option>
           <option value='USD'>Dolar estadounidense</option>
+          <option value='MXN'>Peso mexicano</option>
           <option value='GBP'>Libras</option>
           <option value='EUR'>Euro</option>
         </select>
