@@ -45,40 +45,40 @@ function Form({ setCurrency, setCriptoCurrencyApp }) {
   return (
     <form onSubmit={quoteCurrency}>
       {errorComponent}
-      <div className='row'>
+      <div className="row">
         <label>Elige tu moneda</label>
         <select
-          name=''
-          id=''
-          className='u-full-width'
+          name=""
+          id=""
+          className="u-full-width"
           onChange={e => setCoinQuote(e.target.value)}
         >
-          <option value=''>- Elige tu moneda -</option>
-          <option value='COP'>Peso colombiano</option>
-          <option value='USD'>Dolar estadounidense</option>
-          <option value='MXN'>Peso mexicano</option>
-          <option value='GBP'>Libras</option>
-          <option value='EUR'>Euro</option>
+          <option value="">- Elige tu moneda -</option>
+          <option value="COP">Peso colombiano</option>
+          <option value="USD">Dolar estadounidense</option>
+          <option value="MXN">Peso mexicano</option>
+          <option value="GBP">Libras</option>
+          <option value="EUR">Euro</option>
         </select>
       </div>
-      <div className='row'>
+      <div className="row">
         <label>Elige tu criptomodena</label>
         <select
-          name=''
-          id=''
-          className='u-full-width'
+          name=""
+          id=""
+          className="u-full-width"
           onChange={e => setCriptoQuote(e.target.value)}
         >
-          <option value=''>- Elige tu criptomoneda -</option>
+          <option value="">- Elige tu criptomoneda -</option>
           {criptocurrency.map(cripto => (
             <CritoCurrency key={cripto.CoinInfo.Id} cripto={cripto} />
           ))}
         </select>
       </div>
       <input
-        type='submit'
-        value='Calcular'
-        className='button-primary u-full-width'
+        type="submit"
+        value="Calcular"
+        className="button-primary u-full-width"
       />
     </form>
   )
